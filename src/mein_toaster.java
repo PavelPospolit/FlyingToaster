@@ -5,7 +5,7 @@ public class mein_toaster {
     private final int schaechte;
     private int toastzeit;
     private int anzahl_toasts;
-    public int toast_zustand;
+    private int toast_zustand;
 
     public String getFarbe() {
         return farbe;
@@ -47,7 +47,7 @@ public class mein_toaster {
         this.toast_zustand = toast_zustand;
     }
 
-    public void toast_reintun(int x, mein_toaster vMein_toaster){
+    public static void toast_reintun(int x, mein_toaster vMein_toaster){
         if(x<=vMein_toaster.getSchaechte()){
             vMein_toaster.setAnzahl_toasts(x);
             vMein_toaster.setToast_zustand(0);
@@ -61,7 +61,7 @@ public class mein_toaster {
             System.out.println("Geht nicht, kein Toast drin");
         }
         else{
-            for(int i=0; i<=vMein_toaster.getToastzeit(); i++){
+            for(int i=vMein_toaster.getToastzeit(); i>=0; i--){
                 System.out.println(i);
                 sleep(1000);
             }
@@ -85,7 +85,20 @@ public class mein_toaster {
         }
     }
     public void toast_zustand_erfragen(mein_toaster vMein_toaster){
-        System.out.println("Toastzustand: "+vMein_toaster.getToast_zustand());
+        String toastzustand="";
+        if(vMein_toaster.getToast_zustand()==0){
+            toastzustand="ungetoastet";
+        }
+        else if(vMein_toaster.getToast_zustand()==1){
+            toastzustand="leicht getoastet";
+        }
+        else if(vMein_toaster.getToast_zustand()==2){
+            toastzustand="stark getoastet";
+        }
+        else if(vMein_toaster.getToast_zustand()==3){
+            toastzustand="verbrannt";
+        }
+        System.out.println("Toastzustand: "+vMein_toaster.getToast_zustand()+": "+toastzustand);
     }
     public void toastAuswerfen(mein_toaster vMein_toaster){
         System.out.println(vMein_toaster.getAnzahl_toasts()+" Toasts ausgeworfen, Toaster leer.");
